@@ -3,15 +3,15 @@ from transformers import pipeline
 
 app = Flask(__name__)
 
-summarizer = pipeline('summarization', model='facebook/bart-large-cnn')
+summarizer = pipeline('summarization', model='sshleifer/distilbart-cnn-12-6')
+
 @app.route('/summarize', methods=["POST"])
 def summarize():
     try:
         data = request.get_json()
         text = data["text"]
-        summary = summarizer(text, max_length = 150)
+        summary = summarizer(text, max_length=150, min_length=30, do_sample=False)
         return jsonify({"Summary": summary[0]['summary_text']})
-
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
