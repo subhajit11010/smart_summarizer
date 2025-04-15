@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: smart-summarizer
+    env: python
+    buildCommand: ""
+    startCommand: gunicorn app:app
+    envVars:
+      - key: TRANSFORMERS_CACHE
+        value: /var/cache/huggingface
