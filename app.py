@@ -3,7 +3,7 @@ from transformers import pipeline
 
 app = Flask(__name__)
 
-summarizer = pipeline('summarization', model='sshleifer/distilbart-cnn-12-6')
+summarizer = pipeline('summarization', model='Falconsai/text_summarization')
 
 @app.route('/summarize', methods=["POST"])
 def summarize():
